@@ -21,21 +21,78 @@ console.log("livre empruntés plus d'une fois")
 
  console.log ("------------------------------------------------------------------------------------------")
  
+moreRented = books[0];
 
+ for (let i = 1; i < books.length; i++) {
+    if (moreRented.rented < books[i].rented ){
+      moreRented = books[i];
+    }
+  }
+  console.log(`Le livre le plus emprunté ${moreRented.title}`);
 
-  max = []
-  for (var i=0;i<books.length; i++){
-
- max.push(books[i].rented)
-
- a = Math.max(...max)
-
-
-}
-console.log(`le livre le plus emprunté est: ${a}`)
 
 
  console.log ("------------------------------------------------------------------------------------------")
- 
+
+
+ lessRented = books[0];
+
+  for (let i = 1; i < books.length; i++) {
+    if (lessRented.rented > books[i].rented ){
+      lessRented = books[i];
+    }
+  }
+  console.log(`Le livre le moins emprunté: ${lessRented.title}`);
+
+ console.log ("------------------------------------------------------------------------------------------")
+
 
  console.log ("le livre avec l'ID: 873495 est:")
+
+
+ for (let i = 0; i < books.length; i++) {
+    if (books[i].id === 873495 ) {
+      book = books[i];
+    }
+  }
+console.log(`${book.title}`)
+
+
+ console.log ("------------------------------------------------------------------------------------------")
+
+
+
+function deleteBook(books,id) {
+  let newBooks;
+
+  for (let i = 0; i < books.length; i++) {
+    if (books[i].id === id ) {
+      books.splice(i,1);
+    }
+  }
+  return books
+}
+
+newBooks = deleteBook(books,133712);
+
+
+
+
+console.log ("------------------------------------------------------------------------------------------")
+
+
+
+
+function triageBook(books) {
+  for (var i = 0; i < books.length; i++) {
+    for (var j = 0; j < books.length - 1; j++) {
+      if (books[j].title > books[j+1].title){
+        temp = books[j];
+        books[j] = books[j+1];
+        books[j+1] = temp;
+      }
+    }
+  }
+}
+
+triageBook(newBooks);
